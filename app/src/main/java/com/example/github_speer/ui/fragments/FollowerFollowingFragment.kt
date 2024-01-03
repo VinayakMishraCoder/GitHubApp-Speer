@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.github_speer.adapters.FollowersTabsPagingAdapter
 import com.example.github_speer.databinding.FragmentFollowerFollowingBinding
+import com.example.github_speer.utils.GeneralUtil.uniClick
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FollowerFollowingFragment : Fragment() {
 
     private var userName: String? = null
@@ -27,9 +30,15 @@ class FollowerFollowingFragment : Fragment() {
     ): View? {
         binding = FragmentFollowerFollowingBinding.inflate(inflater, container, false)
 
-        binding.viewPager.adapter = FollowersTabsPagingAdapter(childFragmentManager)
+        binding.viewPager.adapter = FollowersTabsPagingAdapter(childFragmentManager, userName ?: "")
 
         binding.tabLayout.setupWithViewPager(binding.viewPager)
+
+        binding.topText.text = "${userName}'s Followers and Following."
+
+        binding.backButton.uniClick(false) {
+            requireActivity().onBackPressed()
+        }
 
         return binding.root
     }

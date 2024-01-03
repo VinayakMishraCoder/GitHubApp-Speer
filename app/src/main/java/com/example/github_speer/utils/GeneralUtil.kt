@@ -8,7 +8,7 @@ object GeneralUtil {
     /**
      * Handle multiple clicking events on views.
      * */
-    fun View.uniClick(isAnimated: Boolean = false, debounceTime: Int = 500, action: () -> Unit) {
+    fun View.uniClick(isAnimated: Boolean = true, debounceTime: Int = 500, action: () -> Unit) {
         /**
          * Set a bouncy animation to views when clicked.
          * */

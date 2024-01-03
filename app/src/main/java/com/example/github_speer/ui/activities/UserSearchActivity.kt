@@ -18,6 +18,8 @@ class UserSearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_search)
 
+        supportActionBar?.hide()
+
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, SearchFragment())
         transaction.addToBackStack(null)
@@ -26,7 +28,8 @@ class UserSearchActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStack()
+            if(supportFragmentManager.backStackEntryCount == 1) finish()
+            else supportFragmentManager.popBackStack()
         } else {
             super.onBackPressed()
         }

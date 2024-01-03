@@ -8,6 +8,9 @@
         <variable
             name="user"
             type="com.example.github_speer.datamodels.UserDataModel" />
+        <variable
+            name="loading"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +43,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchQuery"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/rectangle_circular_corners"
@@ -53,7 +56,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/blue"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/githubicon"
+            app:iconSize="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/searchQuery"
+            app:layout_constraintStart_toStartOf="@+id/searchQuery"
+            app:layout_constraintTop_toBottomOf="@+id/searchQuery" />
+
+        <ProgressBar
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/black"
+            app:setVisibility="@{loading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/userDataView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -61,18 +90,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchQuery">
+            app:layout_constraintTop_toBottomOf="@+id/materialButton"
+            tools:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/appCompatImageView2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 app:imageUrl="@{user.avatarUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/baseline_cloud_circle_24"/>
+                tools:src="@drawable/baseline_cloud_circle_24" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView2"
@@ -80,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="@{user.userName}"
-                android:textSize="15sp"
                 android:textColor="@color/black"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/appCompatImageView2"
                 app:layout_constraintStart_toStartOf="@+id/appCompatImageView2"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2"
@@ -93,8 +123,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@{user.fullName}"
-                android:textSize="15sp"
                 android:textColor="@color/black"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/appCompatImageView2"
                 app:layout_constraintStart_toStartOf="@+id/appCompatImageView2"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView2"
@@ -105,10 +135,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="14sp"
                 android:maxLines="4"
                 android:text="@{user.bio}"
                 android:textColor="@color/dark_grey"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/materialTextView2"
                 app:layout_constraintStart_toStartOf="@+id/materialTextView2"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView11"
@@ -121,11 +151,11 @@
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/light_grey"
                 android:letterSpacing="0.03"
+                android:text="@{`Followers: ` + user.followers.toString() + `, Following: ` + user.following.toString()}"
                 android:textAllCaps="false"
                 android:textColor="@color/dark_grey"
                 android:textSize="15sp"
                 app:cornerRadius="10dp"
-                android:text="@{`Followers: ` + user.followers.toString() + `, Following` + user.following.toString()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView3"
@@ -137,24 +167,24 @@
                 android:id="@+id/materialTextView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="@string/click_to_see_followers"
                 android:textColor="@color/blue"
                 android:textSize="12sp"
-                android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="@+id/followerButton"
                 app:layout_constraintStart_toStartOf="@+id/followerButton"
                 app:layout_constraintTop_toBottomOf="@+id/followerButton" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/visitWebPage"
+                android:id="@+id/copyUserUrl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/green"
                 android:letterSpacing="0.03"
-                android:text="@string/click_to_visit_webpage"
+                android:text="@string/click_to_copy"
                 android:textAllCaps="false"
-                android:layout_marginBottom="30dp"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:cornerRadius="10dp"
@@ -164,6 +194,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/errorEmptyLayout"
+            layout="@layout/error_empty_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchQuery" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

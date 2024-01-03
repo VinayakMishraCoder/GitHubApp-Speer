@@ -6,23 +6,23 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.github_speer.ui.fragments.FollowerFragments
 import com.example.github_speer.ui.fragments.FollowingFragment
 
-class FollowersTabsPagingAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class FollowersTabsPagingAdapter(fragmentManager: FragmentManager, var userName: String) : FragmentPagerAdapter(fragmentManager) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> FollowerFragments()
-            1 -> FollowingFragment()
+            0 -> FollowerFragments.newInstance(userName)
+            1 -> FollowingFragment.newInstance(userName)
             else -> throw IllegalArgumentException("Invalid position: $position")
         }
     }
 
     override fun getCount(): Int {
-        return 2  // Number of tabs
+        return 2
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "Tab 1"
-            1 -> "Tab 2"
+            0 -> "Followers"
+            1 -> "Following"
             else -> null
         }
     }

@@ -26,6 +26,7 @@
             android:layout_height="80dp"
             android:layout_marginStart="36dp"
             app:imageUrl="@{user.avatarUrl}"
+            android:layout_marginVertical="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,62 +36,32 @@
             android:id="@+id/materialTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="10dp"
             android:text="@{user.userName}"
             android:textColor="@color/black"
-            android:layout_marginTop="18dp"
             android:textSize="15sp"
+            android:layout_marginTop="5dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/appCompatImageView2"
             tools:text="VinayakMishraCoder" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@{user.fullName}"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@+id/materialTextView2"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView2"
-            tools:text="Vinayak Mishra" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@{user.bio}"
-            android:textColor="@color/dark_grey"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/materialTextView11"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView11"
-            tools:text="Recently Coder." />
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/followerButton"
+            android:id="@+id/copyUserUrl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            android:backgroundTint="@color/light_grey"
-            android:insetLeft="0dp"
-            android:insetRight="0dp"
+            android:backgroundTint="@color/green"
             android:letterSpacing="0.03"
-            android:padding="5dp"
-            android:text="@{`Followers: ` + user.followers.toString() + `, Following` + user.following.toString()}"
+            android:text="@string/click_to_copy"
             android:textAllCaps="false"
-            android:textColor="@color/dark_grey"
-            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
             app:cornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/materialTextView3"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView3"
-            app:strokeColor="@color/grey"
-            app:strokeWidth="1dp"
-            tools:text="Followers: 15, Following: 2" />
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView2"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView2"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

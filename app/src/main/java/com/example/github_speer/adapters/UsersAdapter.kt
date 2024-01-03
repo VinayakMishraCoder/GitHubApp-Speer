@@ -11,12 +11,12 @@ import javax.inject.Inject
 class UsersAdapter @Inject constructor(): RecyclerView.Adapter<UsersAdapter.UsersItemViewHolder>() {
     private var dataList = ArrayList<UserDataModel>()
 
-    private var userFollowingClickListener: ((UserDataModel) -> Unit)? = null
+    private var userCopyClickListener: ((UserDataModel) -> Unit)? = null
 
     private var userProfileClickListener: ((UserDataModel) -> Unit)? = null
 
-    fun setOnUserFollowingClickListener(action: (UserDataModel) -> Unit) {
-        this.userFollowingClickListener = action
+    fun setOnUserCopyClickListener(action: (UserDataModel) -> Unit) {
+        this.userCopyClickListener = action
     }
 
     fun setOnUserProfileClickListener(action: (UserDataModel) -> Unit) {
@@ -34,8 +34,8 @@ class UsersAdapter @Inject constructor(): RecyclerView.Adapter<UsersAdapter.User
         RecyclerView.ViewHolder(binding.root) {
         fun bind(currUser: UserDataModel) {
             binding.user = currUser
-            binding.followerButton.uniClick(false) {
-                userFollowingClickListener?.invoke(currUser)
+            binding.copyUserUrl.uniClick(false) {
+                userCopyClickListener?.invoke(currUser)
             }
             binding.root.uniClick(true) {
                 userProfileClickListener?.invoke(currUser)
