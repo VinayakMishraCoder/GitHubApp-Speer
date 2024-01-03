@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GitHub-Speer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="github_search">GitHub Search</string>
+    <string name="search_for_users">Search for Users</string>
+    <string name="click_to_visit_webpage">Click To Visit Webpage.</string>
+    <string name="click_to_see_followers">>> Click above to see followers and following.</string>
 </resources>
