@@ -2,7 +2,7 @@
 
 ## Overview
 
-GitHub-Speer, an advanced Android app, Boasting a user-friendly interface, automatic refresh, and pull-to-refresh capabilities, it stands as your ultimate companion for effortlessly search for github users without logging in.
+GitHub-Speer, an advanced Android app, Boasting a user-friendly interface, automatic refresh, and pull-to-refresh capabilities, it stands as your ultimate companion for effortlessly search for github users without logging in. Project was completed under 24 hours.
 
 ## Key-Features
    - Intuitive design for a seamless user experience.
