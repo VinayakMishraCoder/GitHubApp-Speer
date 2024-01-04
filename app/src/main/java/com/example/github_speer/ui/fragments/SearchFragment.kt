@@ -21,6 +21,10 @@ import com.example.github_speer.utils.GeneralUtil.uniClick
 import com.example.github_speer.viewmodels.SearchUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * This is the starting fragment, which provides search facility.
+ * Shows an error view on getting an Error from API or No-Internet Situation.
+ * */
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
@@ -59,6 +63,9 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Observing the data and handling errors related to searching.
+     * */
     fun observeResponseData() {
         binding.errorEmptyLayout.root.visibility = View.GONE
         binding.userDataView.visibility = View.GONE
@@ -89,6 +96,10 @@ class SearchFragment : Fragment() {
         }
     }
 
+    /**
+     * Functions related to launching Profile fragments and Follower-Followings Fragment.
+     * Added animations on entry of fragments.
+     * */
     fun launchUserProfileFragment(userName: String?) {
         if(userName.isNullOrEmpty()) return
         val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -106,5 +117,4 @@ class SearchFragment : Fragment() {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-
 }

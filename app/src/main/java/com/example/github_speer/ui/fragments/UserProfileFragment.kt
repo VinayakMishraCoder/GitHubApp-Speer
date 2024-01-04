@@ -22,6 +22,10 @@ import com.example.github_speer.utils.GeneralUtil.uniClick
 import com.example.github_speer.viewmodels.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * On clicking any user in the Follower-Following list or in general in SearchFragment,
+ * we will reach to this Profile fragment which shows the full profile of the user clicked
+ * */
 @AndroidEntryPoint
 class UserProfileFragment : Fragment() {
 
@@ -50,6 +54,9 @@ class UserProfileFragment : Fragment() {
             (requireActivity() as UserSearchActivity).onBackPressed()
         }
 
+        /**
+         * Follower Button to launch the Followers-Following Fragment
+         * */
         binding.followerButton.uniClick {
             launchFollowerFollowingFragment(userName)
         }
@@ -65,6 +72,9 @@ class UserProfileFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Observing the data and handling errors related to searching.
+     * */
     fun observeResponseData() {
         binding.errorEmptyLayout.root.visibility = View.GONE
 
@@ -79,18 +89,25 @@ class UserProfileFragment : Fragment() {
                     binding.swipeRefreshLayout.isRefreshing = false
                     binding.mainDataView.visibility = View.VISIBLE
                     binding.errorEmptyLayout.root.visibility = View.GONE
+
+                    /**
+                     * Setting the data to the screen.
+                     * */
+                    binding.user = response.data
+
                     binding.copyUserUrl.uniClick {
                         val clipboard: ClipboardManager =
                             requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip: ClipData = ClipData.newPlainText("Github Page", response.data.htmlUrl)
                         clipboard.setPrimaryClip(clip)
                     }
-                    binding.user = response.data
+
                 }
                 is ResultWrapper.Error -> {
                     binding.swipeRefreshLayout.isRefreshing = false
                     binding.mainDataView.visibility = View.GONE
                     binding.errorEmptyLayout.root.visibility = View.VISIBLE
+
                     Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -108,6 +125,10 @@ class UserProfileFragment : Fragment() {
 
     companion object {
         private const val USER_NAME_ARG = "user_name_arg"
+
+        /**
+         * Way to get instance of this fragment while passing the currUsername being processed to it.
+         * */
         @JvmStatic
         fun newInstance(userName: String) =
             UserProfileFragment().apply {

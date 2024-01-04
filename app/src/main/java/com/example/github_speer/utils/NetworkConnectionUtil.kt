@@ -7,6 +7,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class NetworkConnectionUtil @Inject constructor(@ApplicationContext var context: Context) {
+    /**
+     * This function checks if the mobile has turned on any Internet Service or not.
+     * If not it returns false, else true.
+     * */
     fun isConnectedToInternet(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)

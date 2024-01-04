@@ -8,7 +8,12 @@ import com.example.github_speer.datamodels.UserDataModel
 import com.example.github_speer.utils.GeneralUtil.uniClick
 import javax.inject.Inject
 
+/**
+ * Below same adapter can be used to show both the followers and following
+ * users in the tab adapter.
+ * */
 class UsersAdapter @Inject constructor(): RecyclerView.Adapter<UsersAdapter.UsersItemViewHolder>() {
+
     private var dataList = ArrayList<UserDataModel>()
 
     private var userCopyClickListener: ((UserDataModel) -> Unit)? = null
@@ -34,9 +39,15 @@ class UsersAdapter @Inject constructor(): RecyclerView.Adapter<UsersAdapter.User
         RecyclerView.ViewHolder(binding.root) {
         fun bind(currUser: UserDataModel) {
             binding.user = currUser
+            /**
+             * On clicking the Copy button, the URL to github page gets copied into the clipboard.
+             * */
             binding.copyUserUrl.uniClick(false) {
                 userCopyClickListener?.invoke(currUser)
             }
+            /**
+             * On clicking the whole view, profile page to the clicked user will open.
+             * */
             binding.root.uniClick(true) {
                 userProfileClickListener?.invoke(currUser)
             }

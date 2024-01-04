@@ -9,6 +9,9 @@ import com.example.github_speer.databinding.ErrorEmptyLayoutBinding
 import com.squareup.picasso.Picasso
 
 object BindingAdapter {
+    /**
+     * Can be utilized for downloading images to ImageViews.
+     * */
     @BindingAdapter("imageUrl")
     @JvmStatic
     fun imageUrl(view: AppCompatImageView, url:String?){
@@ -22,6 +25,10 @@ object BindingAdapter {
         }
     }
 
+    /**
+     * Can be utilized for setting visibility to Views
+     * like constraintlayout, etc.
+     * */
     @BindingAdapter("setVisibility")
     @JvmStatic
     fun setVisibility(view: View, visibilityStatus: Boolean?){
@@ -32,6 +39,10 @@ object BindingAdapter {
         }
     }
 
+    /**
+     * Can be utilized for setting visibility to viewgroups
+     * like constraintlayout, etc.
+     * */
     @BindingAdapter("setVisibility")
     @JvmStatic
     fun setVisibility(view: ViewGroup, visibilityStatus: Boolean?){

@@ -57,8 +57,7 @@ class FollowerFollowingViewModel @Inject constructor(
 
                     val responseData = if(isFollowerFragmentCall) repository.getUserFollowersList(userName) else repository.getUserFollowingList(userName)
                     /**
-                     * Generally Response has no message, it only does in the case of an error.
-                     * Just to double check we check for id being null, which indicates no user exists with username.
+                     * Check is response is null or empty.
                      * */
                     if(responseData.isNullOrEmpty()) ResultWrapper.Error("No Users Found.")
                     else ResultWrapper.Success(responseData)

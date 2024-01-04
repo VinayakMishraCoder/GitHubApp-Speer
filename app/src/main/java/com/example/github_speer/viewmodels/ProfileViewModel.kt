@@ -61,10 +61,6 @@ class ProfileViewModel @Inject constructor(
                      * Generally Response has no message, it only does in the case of an error.
                      * Just to double check we check for id being null, which indicates no user exists with username.
                      * */
-                    /**
-                     * Generally Response has no message, it only does in the case of an error.
-                     * Just to double check we check for id being null, which indicates no user exists with username.
-                     * */
                     if(responseData.message != null && responseData.id == null) ResultWrapper.Error(responseData.message)
                     else ResultWrapper.Success(responseData)
 

@@ -10,9 +10,16 @@ import com.example.github_speer.databinding.FragmentFollowerFollowingBinding
 import com.example.github_speer.utils.GeneralUtil.uniClick
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * This fragment contains a tab layout which constists of two fragments i.e., FollowerFragment and FollowingFragment.
+ * This fragment doesn't have any API calls.
+ * */
 @AndroidEntryPoint
 class FollowerFollowingFragment : Fragment() {
 
+    /**
+     * Username retrieved from bundle.
+     * */
     private var userName: String? = null
 
     private lateinit var binding: FragmentFollowerFollowingBinding
@@ -45,7 +52,9 @@ class FollowerFollowingFragment : Fragment() {
 
     companion object {
         private const val USER_NAME_ARG = "user_name_arg"
-
+        /**
+         * Way to get instance of this fragment while passing the currUsername being processed to it.
+         * */
         @JvmStatic
         fun newInstance(userName: String) =
             FollowerFollowingFragment().apply {

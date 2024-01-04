@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.github_speer.ui.fragments.FollowerFragments
 import com.example.github_speer.ui.fragments.FollowingFragment
 
+/**
+ * Adapter for Tab layout in Follower-Following Fragment.
+ * */
 class FollowersTabsPagingAdapter(fragmentManager: FragmentManager, var userName: String) : FragmentPagerAdapter(fragmentManager) {
     override fun getItem(position: Int): Fragment {
         return when (position) {

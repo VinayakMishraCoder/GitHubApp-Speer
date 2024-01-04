@@ -19,9 +19,15 @@ import com.example.github_speer.viewmodels.FollowerFollowingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+/**
+ * This Fragment shows the followers list in recyclerview.
+ * */
 @AndroidEntryPoint
 class FollowerFragments : Fragment() {
 
+    /**
+     * Username retrieved from bundle.
+     * */
     private var userName: String? = null
 
     private val viewModel by viewModels<FollowerFollowingViewModel>()
@@ -69,6 +75,9 @@ class FollowerFragments : Fragment() {
         return binding.root
     }
 
+    /**
+     * Observing the data and handling errors related to User-Followers API call.
+     * */
     fun observeResponseData() {
         binding.errorEmptyLayout.root.visibility = View.GONE
         viewModel.responseData.observe(viewLifecycleOwner) { response ->
@@ -100,17 +109,11 @@ class FollowerFragments : Fragment() {
         transaction.commit()
     }
 
-    fun launchFollowerFollowingFragment(userName: String?) {
-        if(userName.isNullOrEmpty()) return
-        val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out)
-        transaction.replace(R.id.fragment_container, FollowerFollowingFragment.newInstance(userName))
-        transaction.addToBackStack(null)
-        transaction.commit()
-    }
-
     companion object {
         private const val USER_NAME_ARG = "user_name_arg"
+        /**
+         * Way to get instance of this fragment while passing the currUsername being processed to it.
+         * */
         @JvmStatic
         fun newInstance(userName: String) =
             FollowerFragments().apply {
